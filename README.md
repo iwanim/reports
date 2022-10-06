@@ -1,2 +1,2 @@
-# reports
-Automation of PMS administrative tasks
+### reports.py
+Automating procurement of accounting reports from a hotel Property Management System with pyautogui and pywinauto.
