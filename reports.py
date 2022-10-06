@@ -1,0 +1,238 @@
+import pyautogui as p, pywinauto, time
+from datetime import datetime
+from pywinauto.application import Application
+p.PAUSE = 1
+
+def save(fname):
+   time.sleep(30)
+   p.hotkey('ctrl','h')
+   p.click('save.png')
+   p.write(fname)
+   p.click('file.png')
+   p.write('S:\Reports')
+   p.press('enter')
+   p.click('savemsg.png')
+   p.hotkey('alt','y')
+   p.hotkey('alt','f4')
+   p.hotkey('alt','c')
+
+app = Application().connect(backend='uia', title_re='.*OPERA PMS', timeout=10)
+opera = app.window(title_re='.*OPERA PMS', visible_only=False)
+opera.restore().set_focus()
+time.sleep(1)
+
+#All by Transaction Codes Net
+p.click('misc.png')
+p.click('reports.png')
+p.write('Financial Payments')
+p.press('enter')
+p.hotkey('alt','o')
+p.hotkey('alt','r')
+app2 = Application().connect(title_re='.*OperaPrint.*', timeout=10, visible_only=True)
+save('All by Transaction Codes Net')
+
+#Arrivals & CIn today by name
+p.click('misc.png')
+p.click('reports.png')
+p.write('Arrivals & C/In today by name')
+p.press('enter')
+p.hotkey('alt','o')
+p.hotkey('alt','r')
+save('Arrivals & CIn today by name')
+
+#Arrivals VIP
+p.click('misc.png')
+p.click('reports.png')
+p.write('Arrivals: Detailed')
+p.press('enter')
+p.hotkey('alt','o')
+time.sleep(1)
+p.click('vip.png')
+p.hotkey('alt','r')
+save('Arrivals VIP')
+
+#Credit Limit
+p.click('misc.png')
+p.click('reports.png')
+p.write('Credit Limit')
+p.press('enter')
+p.hotkey('alt','o')
+p.hotkey('alt','r')
+save('Credit Limit')
+
+#Financial Transactions with Generates
+p.click('misc.png')
+p.click('reports.png')
+p.write('Financial Transactions with')
+p.press('enter')
+p.hotkey('alt','o')
+p.write('-1')
+p.press('enter')
+p.write('-1')
+p.press('enter')
+p.click('negativepostings.png')
+time.sleep(1)
+p.hotkey('alt','r')
+save('Financial Transactions with Generates')
+
+#Guests INH - By Room
+p.click('misc.png')
+p.click('reports.png')
+p.write('Guests INH - By Room')
+p.press('enter')
+p.hotkey('alt','o')
+p.hotkey('alt','r')
+save('Guests INH - By Room')
+
+#Guests INH - PM Account By Room
+p.click('misc.png')
+p.click('reports.png')
+p.write('Guests INH - PM Account By Ro')
+p.press('enter')
+p.hotkey('alt','o')
+p.hotkey('alt','r')
+save('Guests INH - PM Account By Room')
+
+#History and Forecast
+p.click('misc.png')
+p.click('reports.png')
+p.write('History and Forecast')
+p.press('enter')
+p.hotkey('alt','o')
+p.write('1/9/22')
+p.press('enter')
+p.write('30/9/22')
+p.press('enter')
+p.hotkey('alt','r')
+save('History and Forecast September')
+
+p.click('misc.png')
+p.click('reports.png')
+p.write('History and Forecast')
+p.press('enter')
+p.hotkey('alt','o')
+p.write('1/10/22')
+p.press('enter')
+p.write('31/10/22')
+p.press('enter')
+p.hotkey('alt','r')
+save('History and Forecast October')
+
+p.click('misc.png')
+p.click('reports.png')
+p.write('History and Forecast')
+p.press('enter')
+p.hotkey('alt','o')
+p.write('1/11/22')
+p.press('enter')
+p.write('30/11/22')
+p.press('enter')
+p.hotkey('alt','r')
+save('History and Forecast November')
+
+#HSK Traces
+p.click('misc.png')
+p.click('reports.png')
+p.write('HSK Traces')
+p.press('enter')
+p.hotkey('alt','o')
+p.hotkey('alt','r')
+save('HSK Traces')
+
+#Manager - Flash
+p.click('misc.png')
+p.click('reports.png')
+p.write('Manager - Flash')
+p.press('enter')
+p.hotkey('alt','o')
+p.hotkey('alt','r')
+save('Manager - Flash')
+
+#Reservation Entered On and By
+p.click('misc.png')
+p.click('reports.png')
+p.write('Reservation Entered On')
+p.press('enter')
+p.hotkey('alt','o')
+p.click('staydate.png')
+p.press('tab')
+p.press('tab')
+now = datetime.today().strftime('%d/%m/%Y')
+nowlist = now.split('/')
+day = str(int(nowlist[0])-1)
+month = nowlist[1]
+year = nowlist[2]
+entrydate1 = day+'/'+month+'/'+year
+p.write(entrydate1)
+p.press('enter')
+year = str(int(nowlist[2])+1)
+entrydate2 = day+'/'+month+'/'+year
+p.write(entrydate2)
+p.press('enter')
+p.write(entrydate1)
+p.press('enter')
+p.write(entrydate2)
+p.press('enter')
+p.hotkey('alt','r')
+save('Reservation Entered On and By')
+
+#Reservations - made Yesterday
+p.click('misc.png')
+p.click('reports.png')
+p.write('Reservations - made')
+p.press('enter')
+p.hotkey('alt','o')
+p.hotkey('alt','r')
+save('Reservations - made Yesterday')
+
+#Matrix Trial Balance
+p.click('endofday.png')
+p.click('endreports.png')
+p.press('enter')
+time.sleep(20)
+for i in range(30):
+   p.press('down')
+time.sleep(1)
+p.click('matrixtrial.png')
+time.sleep(1)
+p.hotkey('alt','v')
+now = datetime.today().strftime('%d/%m/%Y')
+nowlist = now.split('/')
+day = str(int(nowlist[0])-1)
+month = nowlist[1]
+year = nowlist[2]
+entrydate = day+'.'+month+'.'+year
+trialtext = 'Matrix Trial Balance ' + entrydate
+time.sleep(30)
+p.hotkey('ctrl','h')
+p.click('save.png')
+p.write(trialtext)
+time.sleep(1)
+p.click('file.png')
+time.sleep(1)
+p.write('S:\Reports')
+time.sleep(0.5)
+p.press('enter')
+p.click('savemsg.png')
+p.hotkey('alt','y')
+opera.restore().set_focus()
+
+#No Shows of the day
+p.click('noshows.png')
+time.sleep(1)
+p.hotkey('alt','v')
+time.sleep(30)
+p.hotkey('ctrl','h')
+p.click('save.png')
+p.write('No Shows of the day')
+time.sleep(1)
+p.click('file.png')
+time.sleep(1)
+p.write('S:\Reports')
+time.sleep(0.5)
+p.press('enter')
+p.click('savemsg.png')
+p.hotkey('alt','y')
+p.click('closetab.png')
+opera.restore().set_focus()
+p.hotkey('alt','c')
